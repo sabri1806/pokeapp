@@ -1,9 +1,9 @@
-
+import PokemonList from "./PokemonList";
 
 function App() {
   return (
     <div className="App">
-pokedex
+      <PokemonList />
     </div>
   );
 }
