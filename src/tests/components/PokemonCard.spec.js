@@ -19,10 +19,7 @@ describe("Test Pockemon Card", () => {
       <PokemonCard pokemon={mockPokemonProps} onSelect={onSelectMock} />
     );
 
-    userEvent.click(screen.getByText("ivysaur"));
-
     expect(screen.getByText("ivysaur")).toBeInTheDocument();
-    expect(onSelectMock).toBeCalled();
   });
 
   test("should call onSelect when the user click on some card", () => {
