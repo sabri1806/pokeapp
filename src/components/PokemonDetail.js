@@ -11,7 +11,7 @@ const PokemonDetail = ({ pokemonUrl }) => {
         setPokemon(data);
       });
     }
-  });
+  }, [pokemonUrl]);
 
   return (
     <div>
