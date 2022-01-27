@@ -1,6 +1,4 @@
-import { useState } from "react";
-import { useEffect } from "react/cjs/react.development";
-import { getPokemonDetail } from "..//services/pokemon.service";
+import { useEffect, useState } from "react";
 
 const PokemonDetail = ({ pokemonUrl }) => {
   const [pokemon, setPokemon] = useState(null);
