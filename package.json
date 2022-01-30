@@ -38,6 +38,7 @@
     ]
   },
   "devDependencies": {
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "react-intl": "^3.12.0"
   }
 }

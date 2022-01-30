@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FormattedMessage } from "react-intl";
 
 import styled from "styled-components";
 
@@ -9,7 +10,7 @@ const Container = styled.div`
   height: 100%;
   min-width: 340px;
   @media (max-width: 1024px) {
-  display: none;
+    display: none;
   }
 `;
 
@@ -31,17 +32,22 @@ const ImgContainer = styled.div`
 `;
 
 const PokemonDetail = ({ pokemon }) => {
-
-  return ( 
+  return (
     <Container>
-      <Label>Nombre: {pokemon?.name}</Label>
-      <Label>Peso: {pokemon?.weight}</Label>
+      <Label>
+        <FormattedMessage id="name" />: {pokemon?.name}
+      </Label>
+      <Label>
+        <FormattedMessage id="weight" />: {pokemon?.weight}
+      </Label>
       <Label>Altura: {pokemon?.height}</Label>
       <Label>Experiencia base: {pokemon?.base_experience}</Label>
       <ImgContainer>
-        <Image src={pokemon?.sprites.other["dream_world"]["front_default"]} alt=""/>
+        <Image
+          src={pokemon?.sprites.other["dream_world"]["front_default"]}
+          alt=""
+        />
       </ImgContainer>
-      
     </Container>
   );
 };
