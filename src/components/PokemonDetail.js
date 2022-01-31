@@ -101,6 +101,12 @@ const FlavorTextEntries = styled.div`
   }
 `;
 
+const Arrow = styled.label`
+  color: #0284c7;
+  font-size: 32px;
+  margin-left: 10px;
+`;
+
 const PokemonDetail = ({
   openFlavorTextEntries,
   pokemon,
@@ -143,7 +149,12 @@ const PokemonDetail = ({
           <FlavorTextTitle
             onClick={() => setOpenFlavorTextEntries(!openFlavorTextEntries)}
           >
-            <FormattedMessage id="someFlavorTextEntries" />
+            <FormattedMessage id="someFlavorTextEntries" />{" "}
+            {openFlavorTextEntries ? (
+              <Arrow>&#x2191;</Arrow>
+            ) : (
+              <Arrow>&#x2192;</Arrow>
+            )}
           </FlavorTextTitle>
           <FlavorTextEntries openFlavorTextEntries={openFlavorTextEntries}>
             {pokemonFLavorText?.map((flavorText, i) => {
