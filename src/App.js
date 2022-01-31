@@ -41,7 +41,7 @@ const languages = {
 };
 
 function App() {
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState("es");
 
   return (
     <LanguageContext.Provider value={language}>
@@ -57,7 +57,7 @@ function App() {
             </Select>
             <div>Frav-Pokedex</div>
           </Header>
-          <PokemonList />
+          <PokemonList language={language}/>
         </div>
       </IntlProvider>
     </LanguageContext.Provider>

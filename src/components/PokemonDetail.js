@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 
 import styled from "styled-components";
 
 const Container = styled.div`
-  min-width: 340px;
+  width: 340px;
   @media (max-width: 1024px) {
     display: none;
   }
@@ -13,10 +12,10 @@ const DescriptionContainer =styled.div`
   background: #cbd5e1;
   border-bottom-right-radius: 8px;
   border-top-right-radius: 8px;
-  height: 350px;
-  overflow: hidden;
+  height: 380px;
+  overflow:${props => props.openFlavorTextEntries ? 'visible' : 'hidden'  };
   position:relative;
-  transition: all 400ms  ease-in-out ;
+  transition: all 200ms ease-in-out ;
   width:${props => props.pokemon? '100%' : '0%'};
   &>div{
     white-space: nowrap;
@@ -30,6 +29,7 @@ const CloseIcon = styled.div`
   color:#cbd5e1;
   cursor:pointer;
   display: flex;
+  font-family: monospace;
   font-size: 13px;
   font-weight: 600;
   height: 20px;
@@ -42,9 +42,9 @@ const CloseIcon = styled.div`
 
 const Label = styled.div`
   font-family: monospace;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 600;
-  margin: 10px;
+  padding: 8px;
 `;
 
 const Image = styled.img`
@@ -57,25 +57,90 @@ const ImgContainer = styled.div`
   justify-content: center;
 `;
 
-const PokemonDetail = ({ pokemon, setSelectedPokemon }) => {
+const FlavorTextContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: fit-content;
+ /*  margin:5px 5px 0; */
+`;
+
+const FlavorTextTitle= styled.div`
+  align-items: center;
+  background-color: #94a3b8;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 16px;
+  font-weight: 600;
+  height:36px;
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+`;
+
+const FlavorTextEntries = styled.div`
+  background-color: #94a3b8;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  height: ${props => props.openFlavorTextEntries? '100%' : '0px'};
+  margin-bottom: 20px;
+  overflow: hidden;
+  position: relative;
+  transition: all 400ms  ease-in-out ;
+  width: 100%;
+  &>div{
+    background: #cbd5e1;
+    border-radius: 8px;
+    display: flex;
+    font-family: monospace;;
+    margin: 6px;
+    padding: 5px 5px;
+    white-space: normal;
+  }
+`;
+
+const PokemonDetail = ({ openFlavorTextEntries, pokemon, pokemonFLavorText, setSelectedPokemon, setOpenFlavorTextEntries }) => {
+
+  const handleDescriptionClose = () => {
+    setOpenFlavorTextEntries(false) 
+    setSelectedPokemon(null)
+  };
+
   return (
     <Container>
-      <DescriptionContainer pokemon={pokemon}>
-        <CloseIcon onClick={()=>setSelectedPokemon(null)}>x</CloseIcon>
+      <DescriptionContainer openFlavorTextEntries={openFlavorTextEntries} pokemon={pokemon}>
+        <CloseIcon onClick={handleDescriptionClose}>x</CloseIcon>
         <Label>
           <FormattedMessage id="name" />: {pokemon?.name}
         </Label>
         <Label>
           <FormattedMessage id="weight" />: {pokemon?.weight}
         </Label>
-        <Label>Altura: {pokemon?.height}</Label>
-        <Label>Experiencia base: {pokemon?.base_experience}</Label>
+        <Label>
+          <FormattedMessage id="height" />: {pokemon?.height}</Label>
+        <Label>
+          <FormattedMessage id="baseExperience" />: {pokemon?.base_experience}</Label>
         <ImgContainer>
           <Image
             src={pokemon?.sprites.other["dream_world"]["front_default"]}
             alt=""
           />
         </ImgContainer>
+        <FlavorTextContainer>
+          <FlavorTextTitle onClick={()=>setOpenFlavorTextEntries(!openFlavorTextEntries)}>
+            <FormattedMessage id="someFlavorTextEntries" />
+          </FlavorTextTitle>
+          <FlavorTextEntries openFlavorTextEntries={openFlavorTextEntries}>
+             {pokemonFLavorText?.map((flavorText, i)=>{
+                return <div key={i}>{flavorText['flavor_text']}</div>
+              })
+            }
+          </FlavorTextEntries>
+        </FlavorTextContainer>
       </DescriptionContainer>
     </Container>
   );

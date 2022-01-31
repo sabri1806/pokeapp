@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import { FormattedMessage } from "react-intl";
 import styled from "styled-components";
 import { getPokemonDetail } from "..//services/pokemon.service";
 
 const Container = styled.div`
-  background-color: #f9fafb;
+  background-color: ${props => props.selected ? '#d1d5db' : '#f9fafb' };
   border: 2px solid #334155;
   cursor: pointer;
   display: flex;
@@ -12,7 +13,7 @@ const Container = styled.div`
   padding: 50px 0px;
   position: relative;
   width: 180px;
-  height: 200px;
+  height: 230px;
   @media (max-width: 1024px) {
     height: 300px;
     width: 99%;
@@ -45,9 +46,10 @@ const ListCard = styled(BaseCardStyles)`
 const DetailCard =styled(BaseCardStyles)`
   display:none;
   @media (max-width: 1024px) {
-    background-color: red;
+    background-color: #cbd5e1;
     color: black;
     display:flex;
+    flex-direction: column;
     height: 100%;
     justify-content: center;
     transform: rotateY(180deg);
@@ -80,7 +82,25 @@ const Image = styled.img`
   }
 `;
 
-const PokemonCard = ({ pokemon, onSelect, selected }) => {
+const Label = styled.div`
+  font-family: monospace;
+  font-size: 30px;
+  font-weight: 600;
+  padding: 8px;
+`;
+
+const DetailImgContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const DetailImage = styled.img`
+  height: 135px;
+  margin: 15px;
+`;
+
+
+const PokemonCard = ({ pokemon, onSelect, selected, selectedPokemonData }) => {
   const [pokemonVal, setPokemonVal] = useState(null);
 
   useEffect(() => {
@@ -102,7 +122,23 @@ const PokemonCard = ({ pokemon, onSelect, selected }) => {
         </ImageContainer>
       </ListCard>
       <DetailCard>
-        Descripcion
+        <Label>
+          <FormattedMessage id="name" />: {selectedPokemonData?.name}
+        </Label>
+        <Label>
+          <FormattedMessage id="weight" />: {selectedPokemonData?.weight}
+        </Label>
+        <Label>
+          <FormattedMessage id="height" />: {selectedPokemonData?.height}</Label>
+        <Label>
+          <FormattedMessage id="baseExperience" />: {selectedPokemonData?.base_experience}
+        </Label>
+        <DetailImgContainer>
+          <DetailImage
+            src={selectedPokemonData?.sprites.other["dream_world"]["front_default"]}
+            alt=""
+          />
+        </DetailImgContainer>
       </DetailCard>
     </Container>
   );

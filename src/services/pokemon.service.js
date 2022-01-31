@@ -9,4 +9,8 @@ const getPokemonDetail = (currentPokemon) => {
   return axios.get(currentPokemon);
 };
 
-export { getAllPokemons, getPokemonDetail };
+const getPokemonSpecieData = (currentPokemon) => {
+  return axios.get(currentPokemon);
+};
+
+export { getAllPokemons, getPokemonDetail, getPokemonSpecieData };

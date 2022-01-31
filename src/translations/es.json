@@ -1,4 +1,7 @@
 {
   "name": "Nombre",
+  "baseExperience": "Experiencia base",
+  "height": "Altura", 
+  "someFlavorTextEntries": "Algunos datos de presentación",
   "weight": "Peso"
 }

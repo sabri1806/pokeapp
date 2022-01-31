@@ -40,28 +40,34 @@ const Nav = styled.button`
     left: 0px;
   `;
 
-const Pagination = ({ initialPage, nextPage, onChangePage, prevPage}) => {
+const Pagination = ({ initialPage, nextPage, onChangePage, prevPage, setOpenFlavorTextEntries}) => {
   const [page, setPage] = useState(initialPage);
 
   useEffect(() => {
     onChangePage(page);
   }, [page, onChangePage]);
 
+  const handlePrevButtonSelect = () => {
+    setOpenFlavorTextEntries(false)
+    setPage({ ...page, offset: page.offset - page.size });
+  };
+
+  const handleNextButtonSelect = () => {
+    setOpenFlavorTextEntries(false)
+    setPage({ ...page, offset: page.offset + page.size });
+  };
+
   return (
     <Container>
       <PrevNav
         disabled={!prevPage}
-        onClick={() => {
-          setPage({ ...page, offset: page.offset - page.size });
-        }}
+        onClick={handlePrevButtonSelect}
       >
         &lt;
       </PrevNav>
       <NextNav
         disabled={!nextPage}
-        onClick={() => {
-          setPage({ ...page, offset: page.offset + page.size });
-        }}
+        onClick={handleNextButtonSelect}
       >
         &gt;
       </NextNav>
