@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Pagination from "./components/Pagination";
 import PokemonCard from "./components/PokemonCard";
 import PokemonDetail from "./components/PokemonDetail";
@@ -17,9 +17,34 @@ const Container = styled.div`
 
 const CardContainer = styled.div`
   display: flex;
+  min-height: 200px;
+  position: relative;
   @media (max-width: 1024px) {
   flex-direction: column;
   }
+`;
+
+const spinerAnimation = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+`;
+
+const SpinerLoader = styled.div`
+  animation-name: ${spinerAnimation};
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #1e293b;
+  border-radius: 47%;
+  height: 36px;
+  left:50%;
+  position: absolute;
+  top:50%;
+  width: 36px;
 `;
 
 const CardsAndNavContainer = styled.div`
@@ -79,6 +104,10 @@ const PokemonList = (language) => {
               selectedPokemonData={selectedPokemon}
             />
           ))}
+        {
+          !pokemonsData &&
+            <SpinerLoader/>
+        }
         </CardContainer>
         <Pagination 
           initialPage={page} 
@@ -92,7 +121,8 @@ const PokemonList = (language) => {
         pokemon={selectedPokemon} 
         pokemonFLavorText={pokemonFLavorText}
         setOpenFlavorTextEntries={setOpenFlavorTextEntries} 
-        setSelectedPokemon={setSelectedPokemon}/>
+        setSelectedPokemon={setSelectedPokemon}
+      />
     </Container>
   );
 };

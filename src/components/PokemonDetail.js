@@ -61,8 +61,6 @@ const FlavorTextContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: fit-content;
- /*  margin:5px 5px 0; */
 `;
 
 const FlavorTextTitle= styled.div`
@@ -73,7 +71,7 @@ const FlavorTextTitle= styled.div`
   font-family: monospace;
   font-size: 16px;
   font-weight: 600;
-  height:36px;
+  height:40px;
   display: flex;
   justify-content: center;
   white-space: nowrap;
@@ -86,9 +84,9 @@ const FlavorTextEntries = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 15px;
-  height: ${props => props.openFlavorTextEntries? '100%' : '0px'};
+  height: ${props => props.openFlavorTextEntries? '150px' : '0px'};
   margin-bottom: 20px;
-  overflow: hidden;
+  overflow-y: scroll;
   position: relative;
   transition: all 400ms  ease-in-out ;
   width: 100%;
