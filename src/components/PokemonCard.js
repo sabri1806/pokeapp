@@ -13,38 +13,45 @@ const Container = styled.div`
   position: relative;
   width: 180px;
   height: 200px;
-  &>div:nth-child(1){
-    transform: ${props => props.selected && 'rotateY(180deg)'}; 
-  }
-  &>div:nth-child(2){
-    transform: ${props => props.selected && 'rotateY(0deg)'};
-  };
   @media (max-width: 1024px) {
-    width: 99%;
     height: 300px;
+    width: 99%;
+    &>div:nth-child(1){
+    transform: ${props => props.selected && 'rotateY(180deg)'}; 
+    }
+    &>div:nth-child(2){
+    transform: ${props => props.selected && 'rotateY(0deg)'};
+    };
   }
 `;
 
 const BaseCardStyles = styled.div`
-  backface-visibility: hidden;
-  position: absolute;
-  transform: rotateY(0deg);
-  transform-style: preserve-3d;
-  transition: 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
-  width:100%;
+  @media (max-width: 1024px) {
+    backface-visibility: hidden;
+    position: absolute;
+    transform: rotateY(0deg);
+    transform-style: preserve-3d;
+    transition: 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+    width:100%;
+}
 `;
 
 const ListCard = styled(BaseCardStyles)`
-  transform: rotateY(0deg);
+  @media (max-width: 1024px) {
+    transform: rotateY(0deg);
+  }
 `;
 
 const DetailCard =styled(BaseCardStyles)`
-  background-color: red;
-  color: black;
-  display:flex;
-  height: 100%;
-  justify-content: center;
-  transform: rotateY(180deg);
+  display:none;
+  @media (max-width: 1024px) {
+    background-color: red;
+    color: black;
+    display:flex;
+    height: 100%;
+    justify-content: center;
+    transform: rotateY(180deg);
+  }
 `;
 
 const Name = styled.label`

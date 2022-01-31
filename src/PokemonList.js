@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styled, { StyleSheetManager } from "styled-components";
+import styled from "styled-components";
 import Pagination from "./components/Pagination";
 import PokemonCard from "./components/PokemonCard";
 import PokemonDetail from "./components/PokemonDetail";
@@ -41,6 +41,14 @@ const PokemonList = () => {
     });
   }, [page]);
 
+  const handleCardSelection = (pokemonData) => {
+    setSelectedPokemon((prevState)=>{
+      if(!prevState || pokemonData.id !== prevState.id){
+        return pokemonData
+      }
+    })
+  };
+
   return (
     <Container>
       <CardsAndNavContainer>
@@ -49,14 +57,14 @@ const PokemonList = () => {
             <PokemonCard
               key={pokemon.name}
               pokemon={pokemon}
-              onSelect={(url) => setSelectedPokemon(url)}
+              onSelect={(pokemonData)=> handleCardSelection(pokemonData)}
               selected={pokemon.name === selectedPokemon?.name}
             />
           ))}
         </CardContainer>
         <Pagination initialPage={page} nextPage={pokemonsData?.next} onChangePage={(page) => setPage(page)} prevPage={pokemonsData?.previous} />
       </CardsAndNavContainer>
-      <PokemonDetail pokemon={selectedPokemon} />
+      <PokemonDetail pokemon={selectedPokemon} setSelectedPokemon={setSelectedPokemon}/>
     </Container>
   );
 };
