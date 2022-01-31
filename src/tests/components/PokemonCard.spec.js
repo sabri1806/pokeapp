@@ -22,12 +22,12 @@ describe("Test Pockemon Card", () => {
     expect(screen.getByText("ivysaur")).toBeInTheDocument();
   });
 
-  test("should call onSelect when the user click on some card", () => {
-    const screen = render(
+  test("should call onSelect when the user click on some card", async () => {
+    const screen = await render(
       <PokemonCard pokemon={mockPokemonProps} onSelect={onSelectMock} />
     );
 
-    userEvent.click(screen.getByText("ivysaur"));
+    await userEvent.click(screen.getByText("ivysaur"));
 
     expect(onSelectMock).toBeCalled();
   });
