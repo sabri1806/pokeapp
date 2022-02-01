@@ -99,6 +99,18 @@ const DetailImage = styled.img`
   margin: 15px;
 `;
 
+const MorePokemonInfo = styled.div`
+  display: none;
+  @media (max-width: 1024px) {
+    color: #0c4a6e;
+    display: flex;
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+  }
+`;
+
 
 const PokemonCard = ({ pokemon, onSelect, selected, selectedPokemonData }) => {
   const [pokemonVal, setPokemonVal] = useState(null);
@@ -120,6 +132,9 @@ const PokemonCard = ({ pokemon, onSelect, selected, selectedPokemonData }) => {
             src={pokemonVal?.sprites.other["official-artwork"]["front_default"]}
           />
         </ImageContainer>
+        <MorePokemonInfo>
+          <FormattedMessage id="clickHereForMoreInfo"/>
+        </MorePokemonInfo>
       </ListCard>
       <DetailCard>
         <Label>
