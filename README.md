@@ -2,9 +2,17 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Pokeapp
 
-In the project directory, you can run:
+To start the proyect
+
+## git clone
+
+[Pokeapp](https://github.com/sabri1806/pokeapp.git).
+
+then
+
+### `npm i`
 
 ### `npm start`
 
