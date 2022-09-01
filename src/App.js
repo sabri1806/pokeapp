@@ -5,6 +5,7 @@ import { IntlProvider } from "react-intl";
 import es from "./translations/es.json";
 import en from "./translations/en.json";
 import styled from "styled-components";
+import pokemonIcon from "./assets/pokemon-icon.svg";
 
 const Header = styled.div`
   align-items: center;
@@ -55,9 +56,10 @@ function App() {
               <option value="en">English</option>
               <option value="es">Español</option>
             </Select>
-            <div>Frav-Pokedex</div>
+            <img src={pokemonIcon} alt="pokemon icon" width="75px" />
+            <div>Poke App</div>
           </Header>
-          <PokemonList language={language}/>
+          <PokemonList language={language} />
         </div>
       </IntlProvider>
     </LanguageContext.Provider>
